@@ -61,7 +61,13 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				abyss: {
+					DEFAULT: 'hsl(var(--abyss))',
+					light: 'hsl(var(--abyss-light))'
+				},
+				'bio-green': 'hsl(var(--bio-green))'
+			}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
