@@ -8,81 +8,55 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
-
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-
     --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
-
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
-
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
-
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
-
     --radius: 0.5rem;
-
     --abyss: 215 45% 5%;
     --abyss-light: 215 40% 8%;
     --bio-green: 156 100% 50%;
     --cyan: 190 100% 50%;
-
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
-
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
-
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
-
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
-
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
-
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
@@ -95,13 +69,16 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+}
 
+@layer base {
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
 
   body {
-    @apply bg-background text-foreground;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
     font-family: "Roboto Mono", monospace;
   }
 
@@ -112,24 +89,6 @@
   h5,
   h6 {
     font-family: "Rajdhani", sans-serif;
-  }
-}
-
-@layer utilities {
-  .bg-abyss {
-    background-color: hsl(var(--abyss));
-  }
-  .bg-abyss-light {
-    background-color: hsl(var(--abyss-light));
-  }
-  .text-bio-green {
-    color: hsl(var(--bio-green));
-  }
-  .border-bio-green {
-    border-color: hsl(var(--bio-green));
-  }
-  .bg-gradient-radial {
-    background: radial-gradient(circle, var(--tw-gradient-stops));
   }
 }
 
@@ -242,11 +201,17 @@
 }
 
 .nav-link {
-  @apply text-bio-green hover:text-cyan-400 transition-colors duration-300 relative;
+  color: hsl(var(--bio-green));
   font-family: "Rajdhani", sans-serif;
   font-weight: 600;
   letter-spacing: 1px;
   text-transform: uppercase;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: hsl(var(--cyan));
 }
 
 .nav-link::after {
@@ -343,7 +308,12 @@
 }
 
 .info-card {
-  @apply p-6 rounded-lg border border-bio-green/20 bg-abyss-light/50 backdrop-blur-sm transition-all duration-300;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 255, 136, 0.2);
+  background-color: rgba(215, 40%, 8%, 0.5);
+  backdrop-filter: blur(4px);
+  transition: all 0.3s;
   clip-path: polygon(
     12px 0,
     calc(100% - 12px) 0,
@@ -357,29 +327,54 @@
 }
 
 .info-card:hover {
-  @apply border-bio-green/50 bg-abyss-light/70;
+  border-color: rgba(0, 255, 136, 0.5);
+  background-color: rgba(215, 40%, 8%, 0.7);
   box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
   transform: translateY(-4px);
 }
 
 .feature-row {
-  @apply p-6 border-l-4 border-bio-green bg-abyss-light/30 backdrop-blur-sm transition-all duration-300;
+  padding: 1.5rem;
+  border-left: 4px solid hsl(var(--bio-green));
+  background-color: rgba(215, 40%, 8%, 0.3);
+  backdrop-filter: blur(4px);
+  transition: all 0.3s;
 }
 
 .feature-row:hover {
-  @apply border-cyan-400 bg-abyss-light/50;
+  border-left-color: hsl(var(--cyan));
+  background-color: rgba(215, 40%, 8%, 0.5);
   box-shadow: inset 0 0 30px rgba(0, 217, 255, 0.1);
   transform: translateX(8px);
 }
 
 .feature-icon {
-  @apply h-16 w-16 rounded-full bg-gradient-to-br from-bio-green to-cyan-400 flex items-center justify-center text-abyss font-bold text-xl border-2 border-bio-green;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 9999px;
+  background: linear-gradient(
+    to bottom right,
+    hsl(var(--bio-green)),
+    hsl(var(--cyan))
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: hsl(var(--abyss));
+  font-weight: bold;
+  font-size: 1.25rem;
+  border: 2px solid hsl(var(--bio-green));
   font-family: "Rajdhani", sans-serif;
   flex-shrink: 0;
 }
 
 .developer-card {
-  @apply p-6 rounded-lg border border-bio-green/20 bg-abyss-light/50 backdrop-blur-sm transition-all duration-300;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 255, 136, 0.2);
+  background-color: rgba(215, 40%, 8%, 0.5);
+  backdrop-filter: blur(4px);
+  transition: all 0.3s;
   clip-path: polygon(
     12px 0,
     calc(100% - 12px) 0,
@@ -393,13 +388,19 @@
 }
 
 .developer-card:hover {
-  @apply border-bio-green/50 bg-abyss-light/70;
+  border-color: rgba(0, 255, 136, 0.5);
+  background-color: rgba(215, 40%, 8%, 0.7);
   box-shadow: 0 0 25px rgba(0, 255, 136, 0.2);
   transform: scale(1.05);
 }
 
 .connect-card {
-  @apply p-8 rounded-lg border-2 border-bio-green/30 bg-abyss-light/50 backdrop-blur-sm transition-all duration-300;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  border: 2px solid rgba(0, 255, 136, 0.3);
+  background-color: rgba(215, 40%, 8%, 0.5);
+  backdrop-filter: blur(4px);
+  transition: all 0.3s;
   clip-path: polygon(
     16px 0,
     calc(100% - 16px) 0,
@@ -413,7 +414,8 @@
 }
 
 .connect-card:hover {
-  @apply border-bio-green/60 bg-abyss-light/70;
+  border-color: rgba(0, 255, 136, 0.6);
+  background-color: rgba(215, 40%, 8%, 0.7);
   box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
 }
 
